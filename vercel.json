@@ -1,19 +1,9 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/time",
+      "source": "/:path*",
+      "destination": "https://njucm.cn/time",
       "has": [
-        {
-          "type": "host",
-          "value": "time.njucm.cn"
-        }
-      ]
-    },
-    {
-       "source": "/(.*)", 
-       "destination": "/$1", 
-       "has": [
         {
           "type": "host",
           "value": "time.njucm.cn"
