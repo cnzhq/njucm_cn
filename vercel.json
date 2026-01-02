@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "time.njucm.cn"
+        }
+      ],
+      "destination": "https://njucm.cn/time",
+      "permanent": false
+    }
+  ]
+}
