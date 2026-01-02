@@ -83,7 +83,7 @@ const config = {
         respectPrefersColorScheme: true,
       },
       navbar: {
-        title: 'My Site',
+        title: '南京中医药大学非官方站',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -93,12 +93,12 @@ const config = {
             type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Tutorial',
+            label: '指南1',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: '博客', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            href: 'https://www.njucm.edu.cn',
+            label: '南京中医药大学官网',
             position: 'right',
           },
         ],
