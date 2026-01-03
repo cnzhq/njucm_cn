@@ -11,16 +11,27 @@ function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        {/* --- 在这里添加你的文字 --- */}
+      <div className="container"> 
+        {/* modification start: 标题部分 */}
+        
+        {/* 1. 中文主标题：应用 .title-font (方正标雅宋) */}
+        <h1 className={clsx('hero__title', 'title-font')}>
+          皇家太医院
+        </h1>
+        
+        {/* 2. 拉丁副标题：应用 .subtitle-font (思源宋体) */}
+        <p className={clsx('hero__subtitle', 'subtitle-font')}>
+          Academia Medica Sinica Imperii
+        </p>
+        
+        {/* modification end */}
+
+        {/* --- 保留你原有的“建设中”提示 --- */}
         <p style={{ fontSize: '1.8rem', margin: '1rem 0', fontWeight: 'bold' }}>
           本站正在建设中<br />We are under construction
         </p>
-        {/* ----------------------- */}
+        {/* ------------------------------- */}
+
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
@@ -37,8 +48,9 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title="首页"
-      description="Description will go into a meta tag in <head />">
+      // 这里为了SEO，建议还是让浏览器标签页显示中文标题
+      title="首页" 
+      description="皇家太医院 - Academia Medica Sinica Imperii">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

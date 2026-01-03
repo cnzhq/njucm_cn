@@ -12,7 +12,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 const config = {
   title: '皇家太医院',
   tagline: 'Academia Medica Sinica Imperii',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/pic_logo_1333.png',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -86,7 +86,7 @@ const config = {
         title: '皇家太医院',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/pic_logo_1333.png',
         },
         items: [
           {

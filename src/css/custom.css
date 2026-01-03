@@ -34,3 +34,44 @@
   letter-spacing: 0.03em;    /* 稍微增加字间距，让大写看起来更疏朗大气 */
   font-size: 2rem;         /* 可选：如果你觉得变大写后文字太小，可以微调 */
 }
+
+/* src/css/custom.css */
+
+/* =========================================
+   1. 引入思源宋体 (Google Fonts: Noto Serif SC)
+   用于：拉丁译名 / 英文副标题
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&display=swap');
+
+/* =========================================
+   2. 注册本地标语体 (子集版)
+   用于：中文大标题
+   ========================================= */
+@font-face {
+  font-family: 'FZBiaoYTFamily'; 
+  /* 注意：这里对应你 static/fonts/ 下的实际文件名 */
+  src: url('/fonts/BYT_5w.woff2') format('truetype'); 
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* =========================================
+   3. 定义工具类 (供 React 组件调用)
+   ========================================= */
+
+/* 中文标题样式 - 使用方正标语体 */
+.title-font {
+  font-family: 'FZBiaoYTFamily', serif;
+  /* 核心修改：强制设置为 normal (400) 甚至 lighter */
+  font-weight: normal !important; 
+  /* 稍微增加一点字间距，也能在视觉上显得不那么拥挤 */
+  letter-spacing: 0.04em;
+}
+
+/* 拉丁译名样式 - 使用思源宋体 */
+.subtitle-font {
+  font-family: 'Noto Serif SC', 'Source Han Serif SC', serif;
+  font-weight: 300; /* 300(细) 或 400(常规)，看你喜欢 */
+  letter-spacing: 0.04em; /* 稍微增加字母间距，英文排版更显高级 */
+}
