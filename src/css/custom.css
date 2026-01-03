@@ -4,7 +4,9 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* =========================================
+   1. 全局颜色变量 (Infima Variables)
+   ========================================= */
 :root {
   --ifm-color-primary: #214fa0;
   --ifm-color-primary-dark: #1e4790;
@@ -13,9 +15,14 @@
   --ifm-color-primary-light: #2457b0;
   --ifm-color-primary-lighter: #265bb8;
   --ifm-color-primary-lightest: #2b67d0;
+
+  /* 定义首页标题的流体基准尺寸 
+     clamp(最小值, 视口宽度比例, 最大值)
+  */
+  --hero-base-size: clamp(2rem, 5.5vw, 6rem);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* 暗黑模式配色 */
 [data-theme='dark'] {
   --ifm-color-primary: #98c1e7;
   --ifm-color-primary-dark: #79aee0;
@@ -26,30 +33,14 @@
   --ifm-color-primary-lightest: #f5f9fd;
 }
 
-/* src/css/custom.css */
-
-/* 专门针对首页副标题（Tagline）的样式 */
-.hero__subtitle {
-  text-transform: uppercase; /* 强制视觉大写 */
-  letter-spacing: 0.03em;    /* 稍微增加字间距，让大写看起来更疏朗大气 */
-  font-size: 2rem;         /* 可选：如果你觉得变大写后文字太小，可以微调 */
-}
-
-/* src/css/custom.css */
-
 /* =========================================
-   1. 引入思源宋体 (Google Fonts: Noto Serif SC)
-   用于：拉丁译名 / 英文副标题
+   2. 字体引入 (Fonts)
    ========================================= */
+
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;700&display=swap');
 
-/* =========================================
-   2. 注册本地标语体 (子集版)
-   用于：中文大标题
-   ========================================= */
 @font-face {
   font-family: 'FZBiaoYTFamily'; 
-  /* 注意：这里对应你 static/fonts/ 下的实际文件名 */
   src: url('/fonts/BYT_5w.woff2') format('truetype'); 
   font-display: swap;
   font-weight: normal;
@@ -57,50 +48,78 @@
 }
 
 /* =========================================
-   3. 定义工具类 (供 React 组件调用)
+   3. 首页 Hero 区域：高精度几何排版
    ========================================= */
 
-/* 中文标题样式 - 使用方正标语体  并对导航栏也使用该字体*/
-.title-font,
-.navbar__title { 
+/* 【修复点 1】选中 Hero 区域下的真实 container，强制 Flex 居中 */
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 水平居中核心代码 */
+  width: 100%;
+}
+
+/* 主标题：皇家太医院 */
+.hero__title {
   font-family: 'FZBiaoYTFamily', serif;
-  /* 强制字体粗细为 normal，防止浏览器自动加粗导致字体糊成一团 */
-  font-weight: normal !important; 
-  /* 统一增加一点字间距 */
-  letter-spacing: 0.04em;
+  font-weight: normal !important;
+  
+  font-size: var(--hero-base-size);
+  line-height: 1.0;
+  
+  white-space: nowrap;
+  margin-bottom: 0.5rem;
+  
+  /* 布局约束 */
+  width: fit-content;
+  /* 【修复点 2】双重保险：自身外边距自动居中 */
+  margin-left: auto; 
+  margin-right: auto;
 }
 
-/* 额外微调：防止导航栏的字变得太小 */
-.navbar__title {
-  font-size: 1.3rem; /* 如果觉得字小了，可以把这个数字改成 1.4rem 或 1.5rem */
-}
-
-/* 3. 副标题：Academia Medica Sinica Imperii */
+/* 副标题：Academia Medica Sinica Imperii */
 .hero__subtitle {
-  /* 字体设置 */
   font-family: 'Noto Serif SC', serif;
   font-weight: 300;
-  text-transform: uppercase; /* 保持大写 */
+  text-transform: uppercase;
   
-  /* 约束 A: 字号始终是 0.6 倍的主标题 
-     使用 calc() 动态计算
-  */
+  /* 几何约束 A: 字号严格为 0.6 倍 */
   font-size: calc(var(--hero-base-size) * 0.6);
   line-height: 1;
 
-  /* 约束 B: 始终不换行 */
+  /* 几何约束 B: 始终不换行 */
   white-space: nowrap;
   
-  /* 约束 C: 宽度不超过主标题的 1.5 倍 (通过缩窄实现)
-     解析：拉丁文默认较宽，为了在保持高度(0.6倍)的同时限制宽度，
-     我们需要横向压缩字体。scaleX(0.7) 相当于横向压缩 30%。
-  */
-  transform: scaleX(0.7); 
-  transform-origin: center top; /* 缩放后保持居中 */
+  /* 几何约束 C: 宽度控制 */
+  transform: scaleX(0.75); 
+  transform-origin: center top; 
   
-  /* 视觉微调 */
-  opacity: 0.9;
-  margin-top: 10px; /* 拉开一点与主标题的距离 */
-}
-/* src/css/custom.css */
+  opacity: 0.85; 
+  letter-spacing: 0px;
 
+  /* 【修复点 3】双重保险：自身外边距自动居中 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* =========================================
+   4. 通用工具类 & 导航栏微调
+   ========================================= */
+
+.navbar__title {
+  font-family: 'FZBiaoYTFamily', serif;
+  font-weight: normal !important;
+  letter-spacing: 0.04em;
+  font-size: 1.3rem;
+}
+
+.title-font {
+  font-family: 'FZBiaoYTFamily', serif;
+  font-weight: normal !important;
+}
+
+.subtitle-font {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
